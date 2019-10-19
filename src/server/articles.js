@@ -16,9 +16,8 @@ const GETALLARTICLES = gql`
 
 export default  getArticles = () => {
     const { loading, error, data} = useQuery(GETALLARTICLES);
-    if ( loading ) return <Text>loading...</Text>
-    if(error) return <Text>An error occured...</Text>
-    console.log('mirriam',data)
+    if ( loading ) return { loading }
+    if(error) return { error }
     return data;
 };
 
