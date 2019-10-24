@@ -1,10 +1,20 @@
 import ApolloClient from 'apollo-boost';
+import { AsyncStorage } from 'react-native';
 
-const client = new ApolloClient({
+const _token = async() => {
+ const token = await AsyncStorage.getItem('token');
+ if(!token){
+   return '';
+ }
+ return token;
+}
+ 
+
+const client = async() => new ApolloClient({
     headers: {
-        authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiczZoamt5QGZmZ21haWwuY29tIiwiaWQiOjF9LCJpYXQiOjE1NzE0MjA5ODQsImV4cCI6MTU3MTUwNzM4NH0.plXFao8KdBRJ_znGWO389D0rnQOl0_3cMOUqi3R2XF4"
+        authorization: await _token()
     },
-    uri: 'http://192.168.1.78:4000/',
+    uri: 'http://172.16.0.199:4000/',
   })
 
 export default client;

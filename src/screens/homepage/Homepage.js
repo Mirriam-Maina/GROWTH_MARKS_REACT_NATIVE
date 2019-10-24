@@ -5,7 +5,6 @@ import  getArticles from '../../server/articles';
 
 const Homepage = (props) => {
     const articles = getArticles();
-
     if(articles.articles) {
         return (
             <View>

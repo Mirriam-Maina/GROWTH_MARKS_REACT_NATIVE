@@ -1,7 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { Text } from 'react-native';
 
 
 const GETALLARTICLES = gql`
@@ -15,9 +14,10 @@ const GETALLARTICLES = gql`
 `;
 
 export default  getArticles = () => {
-    const { loading, error, data} = useQuery(GETALLARTICLES);
+    const { loading, error, data, startPolling} = useQuery(GETALLARTICLES);
+    startPolling(3000);
     if ( loading ) return { loading }
-    if(error) return { error }
+    if(error) return { error };
     return data;
 };
 
